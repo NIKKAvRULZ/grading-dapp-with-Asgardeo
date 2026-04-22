@@ -1,100 +1,98 @@
-# 🎓 Trusted Grading Oracle: Blockchain-Based Academic Verification
+# 🎓 Trusted Grading Oracle: Silent Bridge Middleware
 
-![Project Banner](./src/assets/banner-placeholder.png)
-**Status:** Phase 2 Complete (MVP Deployed on Sepolia Testnet)  
+![Project Banner](./frontend/src/assets/banner-placeholder.png)
+
+**Research Focus:** Seamless LMS-to-Blockchain Integration  
 **Author:** Nithika Perera  
 **Institution:** SLIIT (BSc Hons in Information Technology - Software Engineering)  
-**Research Component:** Seamless LMS Integration
+**Security Partner:** Integrated with **WSO2 Asgardeo**  
 
 ---
 
 ## 📺 Demo Preview
-![Application Demo](./src//assets/demo.gif)
-*Figure 1: Real-time interaction between the React Frontend and the Sepolia Blockchain.*
+![Application Demo](./frontend/src/assets/demo.gif)
+*Figure 1: High-speed extraction and cryptographic sealing of academic records.*
 
 ---
 
 ## 📌 Project Overview
-This project addresses the vulnerability of centralized academic databases. Currently, university grades stored in SQL databases are susceptible to unauthorized modification, server failure, or administrative manipulation.
+Traditional academic record-keeping systems are centralized and vulnerable to manipulation. This project introduces the **Silent Bridge**, a middleware solution designed to bridge the gap between legacy Learning Management Systems (LMS) and Decentralized Ledgers.
 
-The **Trusted Grading Oracle** is a Decentralized Application (DApp) that moves the "Root of Trust" from a central server to the Ethereum Blockchain. It allows authorized lecturers to cryptographically sign and store grades as immutable records that are publicly verifiable but practically tamper-proof.
+The goal is to provide a "Zero-Knowledge" experience for lecturers—allowing them to secure academic records on a tamper-proof ledger without needing to interact directly with complex blockchain wallets or gas fees.
 
-### 🏗 High-Level Architecture
-![System Architecture](./src/assets/architecture.png)
-
----
-
-## 🧩 My Research Component: Seamless LMS Integration
-This project is part of a 4-member research group. My specific contribution focuses on the **Middleware Bridge** that connects standard Web2 Learning Management Systems (like Moodle/Canvas) to the Web3 Blockchain, ensuring seamless user experience without requiring lecturers to understand crypto-wallets.
-
-![LMS Integration Logic](./src/assets/my-component.png)
-*Figure 2: The logic flow for the Seamless LMS Integration module.*
+### 🔐 Secure Identity Management with Asgardeo
+We have integrated **Asgardeo by WSO2** to provide enterprise-grade authentication. This ensures:
+*   **Verified Access:** Only authorized university personnel can access the ingestion portal.
+*   **OIDC Standard:** Uses OpenID Connect for secure, standardized identity propagation.
+*   **Role-Based Security:** Protects the cryptographic signing process from unauthorized triggers.
 
 ---
 
-## ✅ Completed Features (Phase 1 & 2)
-The current version represents the **Minimum Viable Product (MVP)**:
+## 🏗 System Architecture: The "Silent Bridge"
+The Silent Bridge acts as the intelligence layer between the User Interface and the Private Ledger.
 
-* **Immutable Grade Storage:** A custom Solidity Smart Contract (`SimpleGrading.sol`) allows for the permanent storage of Student IDs, Course IDs, and Scores.
-* **Cryptographic Ownership:** Grades are linked to the wallet address of the submitting lecturer, ensuring accountability.
-* **Decentralized Frontend:** A React-based interface (built with Vite) that connects directly to the blockchain via Ethers.js.
-* **Web3 Wallet Integration:** Seamless integration with MetaMask for transaction signing and gas fee management.
-* **Public Verification:** Any stakeholder (student, employer, auditor) can verify a grade by querying the blockchain without needing university admin access.
+1.  **Ingestion:** Accepts standard `.xlsx` and `.csv` grading reports.
+2.  **Extraction:** Standardizes disparate data schemas into a clean, unified JSON structure.
+3.  **Hashing:** Generates a unique **SHA-256 Provenance Hash** for each batch, creating a mathematical "seal".
+4.  **Immutability:** Records the hash and data within a Private Ledger for permanent verification.
+
+![System Architecture](./frontend/src/assets/architecture.png)
+
+---
+
+## ✅ Core Features
+*   **Enterprise Auth:** Full integration with **Asgardeo CIAM**.
+*   **Schema Standardization:** Automatic parsing of diverse grading sheet formats.
+*   **Cryptographic Provenance:** Every record batch is hashed to ensure data integrity.
+*   **Private Ledger Storage:** A simulated high-performance ledger for rapid record retrieval.
+*   **Visual Receipts:** Real-time feedback with provenance hashes for every successful "seal" operation.
 
 ---
 
 ## 🛠 Tech Stack
 
-| Component | Technology | Description |
-| :--- | :--- | :--- |
-| **Blockchain** | ![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?style=flat&logo=Ethereum&logoColor=white) | Sepolia Testnet |
-| **Smart Contract** | ![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=flat&logo=solidity&logoColor=white) | v0.8.0 |
-| **Frontend** | ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB) | React + Vite |
-| **Web3 Library** | ![Ethers](https://img.shields.io/badge/ethers.js-darkblue?style=flat&logo=ethereum&logoColor=white) | Ethers.js v6 |
-| **Tools** | ![VS Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=flat&logo=visual-studio-code&logoColor=white) | Remix IDE & VS Code |
-
----
-
-## ⚙️ Smart Contract Details
-The "Engine" of this application is deployed live on the public testnet.
-
-* **Contract Address:** `0x74AdfE524739932A54F92C33fBb0B30d1f9CB099`
-* **Network:** Sepolia
-* **Explorer:** [View on Sepolia Etherscan](https://sepolia.etherscan.io/address/0x74AdfE524739932A54F92C33fBb0B30d1f9CB099)
+| Component | Technology |
+| :--- | :--- |
+| **IAM** | **WSO2 Asgardeo** (OpenID Connect) |
+| **Frontend** | React + Vite (Vanilla CSS for Premium UI) |
+| **Middleware** | Node.js + Express (The "Silent Bridge") |
+| **Data Logic** | Multer (File Handling) + XLSX (Parsing) |
+| **Security** | Crypto (SHA-256 Hashing) |
+| **Storage** | Private Ledger (JSON-based Immutable Simulation) |
 
 ---
 
 ## 🚀 How to Run Locally
 
-### Prerequisites
-1.  Node.js installed.
-2.  MetaMask browser extension installed.
-3.  Sepolia Testnet ETH (from a faucet).
+### 1. Prerequisites
+*   [Node.js](https://nodejs.org/) (v16+)
+*   An [Asgardeo](https://asgardeo.io/) Application configured (OIDC).
 
-### Installation
-1.  Clone the repository:
-    ```bash
-    git clone [your-repo-link]
-    cd grading-dapp
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Start the development server:
-    ```bash
-    npm run dev
-    ```
-4.  Open the local host link (usually `http://localhost:5173`) and connect your MetaMask wallet.
+### 2. Setup Middleware
+```bash
+cd middleware
+npm install
+node src/server.js   
+```
+*The middleware will run on `http://localhost:5000`.*
+
+### 3. Setup Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*The UI will be available at `http://localhost:5173`.*
+
+### 4. Usage
+1.  Log in using your **Asgardeo** credentials.
+2.  Drag and drop a `.csv` or `.xlsx` grading sheet.
+3.  Click **"Verify & Seal Record"**.
+4.  View the generated **Provenance Hash** and check the `private_ledger/database.json`.
 
 ---
 
-## 🔮 Roadmap: What's to Come
-
-### Phase 3: The Decentralized Reviewer Network (DON)
-* **Objective:** Remove individual lecturer bias.
-* **Mechanism:** Grades will not be finalized immediately. Instead, they will enter a "Proposed" state. A random subset of anonymous reviewers (other lecturers/top students) must vote to "Approve" the grade.
-
-### Phase 4: Privacy & Scalability
-* **Zero-Knowledge Proofs (ZKP):** Allow students to prove they passed a course without revealing their exact score or identity publicly.
-* **IPFS Integration:** Off-chain storage for heavy evidence files (assignment PDFs, exam papers).
+## 🔮 Future Roadmap
+*   **Phase 3:** Integration with Public Blockchains (Ethereum/Sepolia) for cross-institution verification.
+*   **Phase 4:** Zero-Knowledge Proofs (ZKP) for privacy-preserving grade verification.
+*   **Phase 5:** Direct API connectors for Moodle and Canvas LMS.

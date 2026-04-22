@@ -1,24 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAuthContext } from "@asgardeo/auth-react";
 import './Login.css';
 
-const Login = ({ onLoginSuccess }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-
-        setTimeout(() => {
-            setIsLoading(false);
-            onLoginSuccess({
-                name: "Dr. Nithika Perera",
-                faculty: "Faculty of Computing",
-                role: "Senior Lecturer"
-            });
-        }, 1200);
-    };
+const Login = () => {
+    // Pull the signIn method from Asgardeo
+    const { signIn } = useAuthContext();
 
     return (
         <div className="login-container">
@@ -29,31 +15,11 @@ const Login = ({ onLoginSuccess }) => {
                     <p>Secure Academic Grading Enterprise</p>
                 </div>
 
-                <form onSubmit={handleLogin} className="login-form">
-                    <div className="input-group">
-                        <label>Staff Identifier</label>
-                        <input
-                            type="email"
-                            placeholder="e.g., name@sliit.lk"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="input-group">
-                        <label>Security Key</label>
-                        <input
-                            type="password"
-                            placeholder="••••••••"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="sso-btn" disabled={isLoading}>
-                        {isLoading ? 'Verifying Credentials...' : 'Sign In via SSO'}
+                <div className="login-form">
+                    <button onClick={() => signIn()} className="sso-btn">
+                        Sign In via WSO2 Asgardeo
                     </button>
-                </form>
+                </div>
 
                 <div className="login-footer">
                     <small>
@@ -66,4 +32,4 @@ const Login = ({ onLoginSuccess }) => {
     );
 };
 
-export default Login;
+export default Login;

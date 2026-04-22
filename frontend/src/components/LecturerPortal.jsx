@@ -1,9 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useAuthContext } from "@asgardeo/auth-react"; // Import Asgardeo
 import axios from 'axios';
 import './LecturerPortal.css';
 
-const LecturerPortal = ({ user, onLogout }) => {
+const LecturerPortal = () => {
+    // Pull state and signOut from Asgardeo. We no longer need user/onLogout props.
+    const { state, signOut } = useAuthContext();
+
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploadStatus, setUploadStatus] = useState('');
     const [receipt, setReceipt] = useState(null);
@@ -50,10 +54,12 @@ const LecturerPortal = ({ user, onLogout }) => {
                 <div className="nav-logo">SLIIT Grading Oracle</div>
                 <div className="nav-user">
                     <div className="user-info">
-                        <span className="user-name">{user.name}</span>
-                        <span className="user-role">{user.role} • {user.faculty}</span>
+                        {/* Dynamically display the Asgardeo username */}
+                        <span className="user-name">{state.username || "Authorized Verifier"}</span>
+                        <span className="user-role">Secured by WSO2 Asgardeo</span>
                     </div>
-                    <button className="logout-btn" onClick={onLogout}>Logout</button>
+                    {/* Wire up the Asgardeo signOut method */}
+                    <button className="logout-btn" onClick={() => signOut()}>Logout</button>
                 </div>
             </nav>
 
@@ -61,10 +67,12 @@ const LecturerPortal = ({ user, onLogout }) => {
                 <div className="portal-header">
                     <h2>Secure Data Ingestion</h2>
                     <p>
-                        Scale-ready academic records management. Upload your grading sheets to mathematically 
+                        Scale-ready academic records management. Upload your grading sheets to mathematically
                         seal records via the Silent Bridge decentralized middleware.
                     </p>
                 </div>
+
+                {/* ... The rest of your Dropzone and Receipt UI remains exactly the same ... */}
 
                 <div {...getRootProps()} className={`dropzone ${isDragActive ? 'drag-active' : ''}`}>
                     <input {...getInputProps()} />
@@ -118,4 +126,4 @@ const LecturerPortal = ({ user, onLogout }) => {
     );
 };
 
-export default LecturerPortal;
+export default LecturerPortal;

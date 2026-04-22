@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAuthContext } from "@asgardeo/auth-react";
 import Login from './components/Login';
 import LecturerPortal from './components/LecturerPortal';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const handleLoginSuccess = (userData) => {
-    setUser(userData);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-  };
+  const { state } = useAuthContext();
 
   return (
     <main className="App">
-      {!user ? (
-        <Login onLoginSuccess={handleLoginSuccess} />
+      {!state.isAuthenticated ? (
+        <Login />
       ) : (
-        <LecturerPortal user={user} onLogout={handleLogout} />
+        <LecturerPortal />
       )}
     </main>
   );
