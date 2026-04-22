@@ -11,7 +11,7 @@
 
 ## 📺 Demo Preview
 ![Application Demo](./frontend/src/assets/demo.gif)
-*Figure 1: High-speed extraction and cryptographic sealing of academic records.*
+*Figure 1: [Updated Version] High-speed extraction and cryptographic sealing of academic records.*
 
 ---
 
@@ -62,6 +62,27 @@ The Silent Bridge acts as the intelligence layer between the User Interface and 
 
 ---
 
+## 🔗 Quick Reference
+
+| Component | URL | Purpose |
+| :--- | :--- | :--- |
+| **Frontend UI** | `http://localhost:5173` | Lecturer Portal |
+| **Middleware API** | `http://localhost:5000` | Silent Bridge Entry |
+| **Private Ledger** | `./private_ledger/database.json` | Local Data Storage |
+
+---
+
+## 📁 System Structure
+
+```text
+grading-dapp-with-asgardeo/
+├── frontend/             # React + Vite UI
+├── middleware/           # Node.js Logic (Silent Bridge)
+└── private_ledger/       # JSON-based Immutable Log
+```
+
+---
+
 ## 🚀 How to Run Locally
 
 ### 1. Prerequisites
@@ -89,6 +110,15 @@ npm run dev
 2.  Drag and drop a `.csv` or `.xlsx` grading sheet.
 3.  Click **"Verify & Seal Record"**.
 4.  View the generated **Provenance Hash** and check the `private_ledger/database.json`.
+
+---
+
+## 📸 In Action: Middleware Logs
+When you seal a record, the Silent Bridge middleware logs the extraction and hashing process in real-time.
+
+![Terminal Output Placeholder](./frontend/src/assets/terminal-output.png)
+*Figure 2: Real-time terminal output showing the 4-stage data ingestion process.*
+
 
 ---
 
